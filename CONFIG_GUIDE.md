@@ -26,7 +26,7 @@ export const siteConfig = {
   name: "Stockholms Astrologiska Konferens",
   shortName: "SAK",
   description: "...",
-  baseUrl: "https://astrologikonferens.se",
+  baseUrl: "https://astrokonferens.se",
   locale: "sv_SE",
   language: "sv",
 
@@ -61,7 +61,7 @@ export const siteConfig = {
 
 ### Change the Domain
 
-**Current**: `https://astrologikonferens.se`
+**Current**: `https://astroloferens.se`
 
 To update, edit one line in `src/config/site.ts`:
 

@@ -174,7 +174,7 @@ Edit **ONE FILE**: `src/config/site.ts`
 
 ```typescript
 export const siteConfig = {
-  baseUrl: "https://astrologikonferens.se", // Change domain here
+  baseUrl: "https://astroloferens.se", // Change domain here
   name: "Stockholms Astrologiska Konferens",
   description: "...",
   // ... and all other site-wide settings

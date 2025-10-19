@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "SAK",
   description:
     "Konferensen vill samla svenska och internationella föreläsare för att förena och stärka astrologins kulturella status. 28 feb - 1 mar 2025.",
-  baseUrl: "https://astrologikonferens.se",
+  baseUrl: "https://astrokonferens.se",
   locale: "sv_SE",
   language: "sv",
 

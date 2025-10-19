@@ -32,7 +32,7 @@ const pricingTiers = [
 export function Pricing() {
   return (
     <section className="bg-secondary">
-      <div className="max-w-5xl mx-auto px-4 pt-16 sm:pt-20">
+      <div className="max-w-5xl mx-auto px-4 pt-16">
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
           <p className="flex flex-col text-primary text-lg text-balance sm:text-2xl sm:leading-6">
             <span>Observera att priserna nedan gäller en 2-dagarsbiljett.</span>

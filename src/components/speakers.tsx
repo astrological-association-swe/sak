@@ -23,7 +23,7 @@ export function Speakers() {
   return (
     <section
       id="forelesare"
-      className="py-12 pb-0 sm:pb-0 sm:py-24 bg-secondary min-h-dvh"
+      className="py-12 pb-0 sm:pb-0 sm:py-24 bg-secondary"
     >
       <div className="mx-auto px-4 sm:px-4 max-w-5xl">
         <h2 className="text-4xl font-semibold text-primary mb-8 sm:mb-12 text-center sm:text-left">
