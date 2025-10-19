@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base colors - used for page backgrounds and default text */
+  --background: oklch(0.9521 0 0); /* Off White #efefef */
+  --foreground: oklch(0.145 0 0); /* Black */
+
+  /* Primary - Deep Teal: main brand color for buttons, headings, interactive elements */
+  --primary: oklch(0.341 0.0421 212.38); /* #1b3e45 */
+  --primary-foreground: oklch(0.985 0 0); /* Off White */
+  --primary-dark: oklch(
+    0.4296 0.0728 217.72
+  ); /* Aqua Blue #0d596a - darker variant */
+
+  /* Accent - Terracotta: hover states, highlights, CTAs */
+  --accent: oklch(0.5562 0.1118 45.55); /* #a85c37 */
+  --accent-foreground: oklch(0.985 0 0); /* Off White */
+
+  /* Muted - Pale Lavender: cards, subtle backgrounds, secondary UI elements */
+  --muted: oklch(0.8899 0.0164 52.54); /* #e4d8d1 */
+  --muted-foreground: oklch(0.341 0.0421 212.38); /* Deep Teal */
+
+  /* Secondary - Soft Teal: section backgrounds, alternative surfaces */
+  --secondary: oklch(0.7742 0.0238 210.41); /* #a5babe */
+  --secondary-foreground: oklch(0.145 0 0); /* Black */
+
+  /* Border - for subtle dividers */
+  --border: oklch(0.7742 0.0238 210.41); /* Soft Teal */
+
+  /* Decorative - Gold: optional accent for special elements */
+  --gold: oklch(0.7205 0.0835 67.67); /* #C89B6B */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Typography system:
+   * - heading: TAN Pearl (decorative serif) for headlines, logo, large titles
+   * - body: Glacial Indifference (clean sans) for paragraphs, UI text
+   * - accent: Haliman (stylistic) for decorative subheadings, special text
+   */
+  --font-heading: var(--font-tan-pearl);
+  --font-body: var(--font-glacial-indifference);
+  --font-accent: var(--font-haliman);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Color utilities for Tailwind */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-gold: var(--gold);
 }
