@@ -6,6 +6,7 @@ export const siteConfig = {
   baseUrl: "https://astrokonferens.se",
   locale: "sv_SE",
   language: "sv",
+  themeColor: "#0d596a",
 
   event: {
     startDate: "2025-02-28",

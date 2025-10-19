@@ -91,6 +91,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.baseUrl,
   },
+  themeColor: siteConfig.themeColor,
   verification: {
     // Add your verification codes when available
     // google: 'your-google-verification-code',
