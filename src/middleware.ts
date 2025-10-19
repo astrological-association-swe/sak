@@ -2,8 +2,13 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const authHeader = request.headers.get("authorization");
+  // Skip basic auth if credentials are not configured
+  const basicAuthCredentials = process.env.BASIC_AUTH_CREDENTIALS;
+  if (!basicAuthCredentials) {
+    return NextResponse.next();
+  }
 
+  const authHeader = request.headers.get("authorization");
   if (!authHeader) {
     return new NextResponse("Authentication required", {
       status: 401,
@@ -18,7 +23,8 @@ export function middleware(request: NextRequest) {
     .toString()
     .split(":");
 
-  if (username !== "astro" || password !== "freak") {
+  const [expectedUsername, expectedPassword] = basicAuthCredentials.split(":");
+  if (username !== expectedUsername || password !== expectedPassword) {
     return new NextResponse("Invalid credentials", {
       status: 401,
       headers: {
