@@ -25,16 +25,16 @@ export default async function Image() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0d596a",
+          backgroundColor: "#0d596a",
           padding: "40px",
         }}
       >
         <img
           src={imageUrl}
           alt={`${siteConfig.name} 2025`}
+          width="1120"
+          height="550"
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "contain",
           }}
         />
