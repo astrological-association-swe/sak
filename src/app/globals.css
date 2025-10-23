@@ -35,11 +35,11 @@
   /* Typography system:
    * - heading: TAN Pearl (decorative serif) for headlines, logo, large titles
    * - body: Glacial Indifference (clean sans) for paragraphs, UI text
-   * - accent: Haliman (stylistic) for decorative subheadings, special text
+   * - accent: Halimun (stylistic) for decorative subheadings, special text
    */
   --font-heading: var(--font-tan-pearl);
   --font-body: var(--font-glacial-indifference);
-  --font-accent: var(--font-haliman);
+  --font-accent: var(--font-halimun);
 
   /* Color utilities for Tailwind */
   --color-primary: var(--primary);

@@ -10,9 +10,9 @@ Modern, intuitive, and creative aesthetic combining mysticism with human warmth.
 
 - **Primary Font:** TAN Pearl
 - **Secondary Font:** Glacial Indifference
-- **Accent Font:** Haliman
+- **Accent Font:** Halimun
 
-Use TAN Pearl for logo and headers, Haliman for stylistic subheadings, and Glacial Indifference for readable text.
+Use TAN Pearl for logo and headers, Halimun for stylistic subheadings, and Glacial Indifference for readable text.
 
 ---
 
@@ -49,7 +49,7 @@ Mix professional structure with mystical undertones. Avoid cold or overly corpor
 ## Usage Recommendations
 
 - **Buttons:** Deep Teal background, Terracotta hover.
-- **Headings:** TAN Pearl or Haliman.
+- **Headings:** TAN Pearl or Halimun.
 - **Backgrounds:** Pale Lavender or Soft Teal.
 - **Icons/Illustrations:** Copper or Terracotta tones.
 

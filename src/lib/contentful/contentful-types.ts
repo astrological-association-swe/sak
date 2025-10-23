@@ -72,6 +72,8 @@ export interface Page {
     pageId: PageId;
     metaTitle?: string;
     metaDescription?: string;
+    heading?: string;
+    subHeading?: string;
   };
 }
 
@@ -177,5 +179,26 @@ export interface Hero {
     date: string;
     time: string;
     text: string;
+  };
+}
+
+export interface ContactDetails {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    contentType: {
+      sys: {
+        id: string;
+        type: string;
+      };
+    };
+  };
+  fields: {
+    name: "Contact";
+    email?: string;
+    phone?: string;
+    address?: string;
   };
 }

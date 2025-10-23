@@ -6,6 +6,7 @@ import type {
   Ticket,
   Lecturer,
   Hero,
+  ContactDetails,
 } from "./contentful-types";
 import { PageId, TextKey } from "./contentful-types";
 import { unstable_cache } from "next/cache";
@@ -136,12 +137,25 @@ export function getTicketUrl(
   ticket: Ticket,
   baseTicketUrl?: string
 ): string | null {
-  // Use individual ticket link if available
+  // Use individual ticket link if available - ignore baseTicketUrl completely
   if (ticket.fields.ticketLink) {
-    return ticket.fields.ticketLink;
+    let url = ticket.fields.ticketLink.trim();
+
+    // Remove any leading slash that might cause issues
+    if (url.startsWith("/")) {
+      url = url.substring(1);
+    }
+
+    // Ensure URL has protocol
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    // Add https:// if no protocol is present
+    const finalUrl = `https://${url}`;
+    return finalUrl;
   }
 
-  // Fall back to base ticket URL if available
+  // Only use baseTicketUrl as fallback when there's no individual ticket link
   if (baseTicketUrl) {
     return baseTicketUrl;
   }
@@ -190,6 +204,22 @@ export const getHero = unstable_cache(
   ["hero"],
   {
     tags: ["hero"],
+    revalidate: 604800, // 1 week
+  }
+);
+
+// Contact Details queries with cache tags
+export const getContactDetails = unstable_cache(
+  async (): Promise<ContactDetails | null> => {
+    const response = await getEntries<ContactDetails>("contactDetails", {
+      "fields.name": "Contact",
+      limit: 1,
+    });
+    return response.items[0] || null;
+  },
+  ["contact-details"],
+  {
+    tags: ["contact-details"],
     revalidate: 604800, // 1 week
   }
 );

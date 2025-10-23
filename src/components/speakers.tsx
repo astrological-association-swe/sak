@@ -5,6 +5,7 @@ import { Button } from "./button";
 import Image from "next/image";
 import type { Lecturer, Tickets } from "@/lib/contentful/contentful-types";
 import { getAssetUrl } from "@/lib/contentful/assets";
+import { trackTicketPurchaseClick } from "@/lib/gtm";
 
 interface SpeakersProps {
   lecturers: Lecturer[];
@@ -38,7 +39,7 @@ export function Speakers({ lecturers, ticketsData }: SpeakersProps) {
       className="py-12 pb-0 sm:pb-0 sm:py-24 bg-secondary"
     >
       <div className="mx-auto px-4 sm:px-4 max-w-5xl">
-        <h2 className="text-4xl font-semibold text-primary mb-8 sm:mb-12 text-center sm:text-left">
+        <h2 className="text-4xl font-heading font-semibold text-primary mb-8 sm:mb-12 text-center sm:text-left">
           Föreläsare
         </h2>
 
@@ -50,7 +51,16 @@ export function Speakers({ lecturers, ticketsData }: SpeakersProps) {
 
         {ticketsData?.fields.baseTicketUrl && (
           <div className="flex justify-center sm:justify-start">
-            <Button variant="primary" size="lg" asChild>
+            <Button
+              variant="primary"
+              size="lg"
+              asChild
+              trackingName="ticket_purchase"
+              trackingLocation="speakers"
+              onTrackingClick={() =>
+                trackTicketPurchaseClick("general", "speakers")
+              }
+            >
               <a
                 href={ticketsData.fields.baseTicketUrl}
                 target="_blank"
@@ -73,15 +83,15 @@ function SpeakerCard({ lecturer }: { lecturer: Lecturer }) {
     : null;
 
   return (
-    <div className="bg-muted rounded-sm p-6 flex flex-col sm:flex-row sm:items-start gap-6">
-      <div className="w-full sm:w-32 h-32 sm:h-32 bg-white/40 rounded flex-shrink-0 mx-auto sm:mx-0 overflow-hidden relative">
+    <div className="bg-muted rounded-sm p-6 flex flex-col sm:flex-row sm:items-stretch gap-6 min-h-[200px] sm:min-h-[180px]">
+      <div className="w-32 h-40 sm:w-36 sm:h-44 bg-white/40 rounded flex-shrink-0 mx-auto sm:mx-0 overflow-hidden relative">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt={lecturer.fields.name}
             fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, 128px"
+            className="object-cover object-top"
+            sizes="(max-width: 640px) 128px, 144px"
             quality={80}
           />
         ) : (
@@ -91,24 +101,30 @@ function SpeakerCard({ lecturer }: { lecturer: Lecturer }) {
         )}
       </div>
 
-      <div className="flex flex-col flex-grow">
-        <h3 className="text-2xl text-accent font-semibold mb-3 text-center sm:text-left">
-          {lecturer.fields.name}
-        </h3>
+      <div className="flex flex-col flex-grow justify-between min-h-0 sm:py-6">
+        <div>
+          <h3 className="text-2xl text-accent font-accent font-semibold mb-3 text-center sm:text-left">
+            {lecturer.fields.name}
+          </h3>
 
-        {lecturer.fields.shortDescription && (
-          <p className="text-sm text-primary mb-6 leading-relaxed flex-grow text-center sm:text-left">
-            {lecturer.fields.shortDescription}
-          </p>
-        )}
+          {lecturer.fields.shortDescription && (
+            <p className="text-sm text-primary leading-relaxed text-center sm:text-left">
+              {lecturer.fields.shortDescription}
+            </p>
+          )}
 
-        {/* {lecturer.fields.longDescription && (
-          <p className="text-sm text-primary/80 mb-6 leading-relaxed text-center sm:text-left">
-            {lecturer.fields.longDescription}
-          </p>
-        )} */}
+          {/* {lecturer.fields.longDescription && (
+            <p className="text-sm text-primary/80 mb-6 leading-relaxed text-center sm:text-left">
+              {lecturer.fields.longDescription}
+            </p>
+          )} */}
+        </div>
 
-        <Button variant="primary" size="sm" className="w-fit mx-auto sm:mx-0">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-fit mx-auto sm:mx-0 mt-6"
+        >
           Läs mer
         </Button>
       </div>

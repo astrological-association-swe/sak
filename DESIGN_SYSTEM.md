@@ -168,7 +168,7 @@ Fonts are named by **purpose** to make it clear when to use each one.
 
 ---
 
-#### `font-accent` - Haliman
+#### `font-accent` - halimun
 
 **Description:** Stylistic decorative font
 
@@ -344,7 +344,7 @@ If you see these old class names, replace them with:
 
 - `font-sans` → `font-heading` (for TAN Pearl)
 - `font-serif` → `font-body` (for Glacial Indifference)
-- `font-accent` → `font-accent` (unchanged, for Haliman)
+- `font-accent` → `font-accent` (unchanged, for halimun)
 
 ---
 

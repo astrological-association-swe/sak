@@ -12,6 +12,7 @@ import {
   getTicketUrl,
 } from "@/lib/contentful/contentful-queries";
 import { useText } from "@/lib/contentful/text-context";
+import { trackTicketPurchaseClick } from "@/lib/gtm";
 
 interface PricingProps {
   ticketsData: Tickets | null;
@@ -140,7 +141,19 @@ function TicketCard({
       )}
 
       {ticketUrl && (
-        <Button variant={styles.button} className="w-full" asChild>
+        <Button
+          variant={styles.button}
+          className="w-full"
+          asChild
+          trackingName="ticket_purchase"
+          trackingLocation="pricing"
+          onTrackingClick={() =>
+            trackTicketPurchaseClick(
+              ticket.fields.title || "unknown",
+              "pricing"
+            )
+          }
+        >
           <a href={ticketUrl} target="_blank" rel="noopener noreferrer">
             {ticket.fields.ctaText || "Köp biljett"}
           </a>

@@ -3,13 +3,13 @@ import localFont from "next/font/local";
 export const tanPearl = localFont({
   src: "../../public/fonts/tan-pearl.woff2",
   variable: "--font-tan-pearl",
-  display: "block",
+  display: "swap",
 });
 
-export const haliman = localFont({
+export const halimun = localFont({
   src: "../../public/fonts/Halimun.woff",
-  variable: "--font-haliman",
-  display: "block",
+  variable: "--font-halimun",
+  display: "swap",
 });
 
 export const glacialIndifference = localFont({
@@ -26,5 +26,5 @@ export const glacialIndifference = localFont({
     },
   ],
   variable: "--font-glacial-indifference",
-  display: "block",
+  display: "swap",
 });

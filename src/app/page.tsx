@@ -8,6 +8,9 @@ import {
   getHero,
 } from "@/lib/contentful/contentful-queries";
 import { PageTextProvider } from "@/lib/contentful/page-text-provider";
+import { homeMetadata } from "@/config/meta-data/home";
+
+export const metadata = homeMetadata;
 
 export default async function Home() {
   const [texts, ticketsData, lecturers, heroData] = await Promise.all([
