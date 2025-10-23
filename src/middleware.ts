@@ -3,8 +3,9 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Skip basic auth if credentials are not configured
-  const basicAuthCredentials = process.env.BASIC_AUTH_CREDENTIALS;
-  if (!basicAuthCredentials) {
+
+  const basicAuthEnabled = process.env.BASIC_AUTH_ENABLED;
+  if (!basicAuthEnabled) {
     return NextResponse.next();
   }
 
@@ -23,7 +24,9 @@ export function middleware(request: NextRequest) {
     .toString()
     .split(":");
 
-  const [expectedUsername, expectedPassword] = basicAuthCredentials.split(":");
+  const expectedUsername = process.env.BASIC_AUTH_USERNAME;
+  const expectedPassword = process.env.BASIC_AUTH_PASSWORD;
+
   if (username !== expectedUsername || password !== expectedPassword) {
     return new NextResponse("Invalid credentials", {
       status: 401,

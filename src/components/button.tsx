@@ -1,4 +1,5 @@
 import { cn } from "@/utils/tailwind";
+import React, { forwardRef } from "react";
 
 type ButtonVariant = "primary" | "dark" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -8,6 +9,7 @@ type ButtonProps = {
   className?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  asChild?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const baseStyles =
@@ -29,19 +31,45 @@ const sizes = {
   lg: "px-6 py-2.5 text-base",
 };
 
-export function Button({
-  children,
-  className,
-  variant = "primary",
-  size = "md",
-  ...props
-}: ButtonProps) {
-  return (
-    <button
-      className={cn(baseStyles, variants[variant], sizes[size], className)}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      className,
+      variant = "primary",
+      size = "md",
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
+    const buttonClasses = cn(
+      baseStyles,
+      variants[variant],
+      sizes[size],
+      className
+    );
+
+    if (asChild) {
+      // When asChild is true, we expect the children to be a single React element
+      // that we'll clone with our button styles and props
+      const child = React.Children.only(children) as React.ReactElement<{
+        className?: string;
+        ref?: React.Ref<HTMLElement>;
+      }>;
+      return React.cloneElement(child, {
+        ...props,
+        className: cn(buttonClasses, child.props?.className),
+        ref: ref || child.props?.ref,
+      });
+    }
+
+    return (
+      <button ref={ref} className={buttonClasses} {...props}>
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";

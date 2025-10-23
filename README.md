@@ -2,6 +2,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Environment Variables
+
+Create a `.env.local` file in the root directory and add your Google Tag Manager ID:
+
+```bash
+# Google Tag Manager
+# Get your GTM ID from https://tagmanager.google.com/
+# Format: GTM-XXXXXXX
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+```
+
+### Development Server
+
 First, run the development server:
 
 ```bash

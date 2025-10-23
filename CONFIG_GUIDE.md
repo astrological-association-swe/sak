@@ -82,8 +82,8 @@ This automatically updates:
 
 ```typescript
 event: {
-  startDate: "2026-03-01", // Change here
-  endDate: "2026-03-02",   // And here
+  startDate: "2025-03-01", // Change here
+  endDate: "2025-03-02",   // And here
   ...
 }
 ```

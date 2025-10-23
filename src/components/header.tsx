@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,30 +32,30 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mr-8">
-          <a
+          <Link
             href="#forelesare"
             className="text-primary hover:text-accent transition-colors font-medium"
           >
             Föreläsare
-          </a>
-          <a
-            href="#program"
+          </Link>
+          <Link
+            href="/program"
             className="text-primary hover:text-accent transition-colors font-medium"
           >
             Program
-          </a>
-          <a
-            href="#om-konferensen"
+          </Link>
+          <Link
+            href="/om-konferensen"
             className="text-primary hover:text-accent transition-colors font-medium"
           >
             Om konferensen
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/kontakt"
             className="text-primary hover:text-accent transition-colors font-medium"
           >
             Contact
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
