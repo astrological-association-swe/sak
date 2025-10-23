@@ -221,7 +221,7 @@ export const getHero = unstable_cache(
 export const getContactDetails = unstable_cache(
   async (): Promise<ContactDetails | null> => {
     const response = await getEntries<ContactDetails>("contactDetails", {
-      "fields.name": "Contact",
+      "fields.name": "Contact Information",
       limit: 1,
     });
     return response.items[0] || null;

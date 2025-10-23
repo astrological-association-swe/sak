@@ -204,7 +204,7 @@ export interface ContactDetails {
     };
   };
   fields: {
-    name: "Contact";
+    name: "Contact Information";
     email?: string;
     phone?: string;
     address?: string;

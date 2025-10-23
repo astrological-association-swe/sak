@@ -77,7 +77,7 @@ export default async function ContactPage() {
                         Telefon
                       </h3>
                       <p className="text-primary">
-                        {contactDetails?.fields.phone || "+46 (0)8 123 456 78"}
+                        {contactDetails?.fields.phone}
                       </p>
                     </div>
                   </div>
@@ -91,8 +91,7 @@ export default async function ContactPage() {
                         Adress
                       </h3>
                       <p className="text-primary whitespace-pre-line">
-                        {contactDetails?.fields.address ||
-                          "Stockholm Conference Center\nAstrologigatan 1\n111 22 Stockholm, Sverige"}
+                        {contactDetails?.fields.address}
                       </p>
                     </div>
                   </div>
@@ -178,11 +177,10 @@ export default async function ContactPage() {
             {interestedCard && (
               <div className="bg-primary-dark rounded-sm p-6 sm:p-8 text-center">
                 <h2 className="text-2xl sm:text-3xl font-heading text-white mb-4">
-                  {interestedCard.fields.heading || "Intresserad av att delta?"}
+                  {interestedCard.fields.heading}
                 </h2>
                 <p className="text-white/90 text-lg leading-relaxed mb-6">
-                  {interestedCard.fields.subHeading ||
-                    "Boka din plats redan idag och var med på årets mest spännande astrologiska konferens i Stockholm."}
+                  {interestedCard.fields.subHeading}
                 </p>
 
                 {ticketsData?.fields.baseTicketUrl && (
