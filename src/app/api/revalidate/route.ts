@@ -92,32 +92,38 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET endpoint for testing revalidation
-export async function GET(request: NextRequest) {
-  // Verify basic authentication
-  if (!verifyBasicAuth(request)) {
-    return createAuthError();
-  }
+// // GET endpoint for testing revalidation
+// export async function GET(request: NextRequest) {
+//   // Verify basic authentication
+//   if (!verifyBasicAuth(request)) {
+//     return createAuthError();
+//   }
 
-  return NextResponse.json({
-    message: "Revalidation API endpoint",
-    usage: {
-      method: "POST",
-      headers: {
-        Authorization: "Basic base64(username:password)",
-        "Content-Type": "application/json",
-      },
-      body: {
-        tags: ["texts", "pages", "page-Home", "text-HERO_DATE"],
-        paths: ["/", "/about", "/contact"],
-      },
-    },
-    availableTags: {
-      texts: ["texts", "text-HERO_DATE", "text-HERO_TIME", "text-HERO_TEXT"],
-      pages: ["pages", "page-Home", "page-About", "page-Contact"],
-      tickets: ["tickets"],
-      lecturers: ["lecturers"],
-      hero: ["hero"],
-    },
-  });
-}
+//   return NextResponse.json({
+//     message: "Revalidation API endpoint",
+//     usage: {
+//       method: "POST",
+//       headers: {
+//         Authorization: "Basic base64(username:password)",
+//         "Content-Type": "application/json",
+//       },
+//       body: {
+//         tags: [
+//           "texts",
+//           "pages",
+//           "page-Home",
+//           "text-UNDER_CONSTRUCTION",
+//           "text-OBS_TICKET_INFO",
+//         ],
+//         paths: ["/", "/about", "/contact"],
+//       },
+//     },
+//     availableTags: {
+//       texts: ["texts", "text-HERO_DATE", "text-HERO_TIME", "text-HERO_TEXT"],
+//       pages: ["pages", "page-Home", "page-About", "page-Contact"],
+//       tickets: ["tickets"],
+//       lecturers: ["lecturers"],
+//       hero: ["hero"],
+//     },
+//   });
+// }

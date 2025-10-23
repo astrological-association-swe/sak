@@ -50,7 +50,6 @@ The following content types are configured in your Contentful space:
 ### Text
 
 - `textKey` (Symbol, required, unique)
-  - Allowed values: "HERO_DATE", "HERO_TIME", "HERO_TEXT"
 - `textValue` (Symbol, optional)
 
 ### Ticket
@@ -101,16 +100,6 @@ enum PageId {
 }
 ```
 
-### TextKey Enum
-
-```typescript
-enum TextKey {
-  HERO_DATE = "HERO_DATE",
-  HERO_TIME = "HERO_TIME",
-  HERO_TEXT = "HERO_TEXT",
-}
-```
-
 These enums ensure that you always use the correct values that match your Contentful content types, preventing runtime errors and providing better IDE support.
 
 ## Usage Examples
@@ -132,10 +121,6 @@ import { useText } from "@/lib/contentful/text-context";
 const homePage = await getPageByPageId(PageId.HOME);
 const aboutPage = await getPageByPageId(PageId.ABOUT);
 const contactPage = await getPageByPageId(PageId.CONTACT);
-
-const heroText = await getTextByKey(TextKey.HERO_TEXT);
-const heroDate = await getTextByKey(TextKey.HERO_DATE);
-const heroTime = await getTextByKey(TextKey.HERO_TIME);
 
 // Tickets usage
 const allTickets = await getAllTickets();
@@ -174,7 +159,6 @@ function MyComponent() {
     <div>
       <h1>{text(TextKey.HERO_TEXT)}</h1>
       <p>Date: {text(TextKey.HERO_DATE)}</p>
-      <p>Time: {text(TextKey.HERO_TIME)}</p>
     </div>
   );
 }

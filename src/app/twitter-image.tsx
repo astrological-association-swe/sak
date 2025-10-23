@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 
 export const runtime = "edge";
 
-export const alt = `${siteConfig.name} 2025`;
+export const alt = `${siteConfig.name}`;
 export const size = {
   width: 1200,
   height: 630,
@@ -31,7 +31,7 @@ export default async function Image() {
       >
         <img
           src={imageUrl}
-          alt={`${siteConfig.name} 2025`}
+          alt={`${siteConfig.name}`}
           width="1120"
           height="550"
           style={{

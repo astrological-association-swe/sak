@@ -1,10 +1,10 @@
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import { siteConfig } from "../site";
 
 export const layoutMetaData: Metadata = {
   metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: `${siteConfig.name} 2025 - ${siteConfig.shortName}`,
+    default: `${siteConfig.name} - ${siteConfig.shortName}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -17,20 +17,20 @@ export const layoutMetaData: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.baseUrl,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} 2025`,
+    title: `${siteConfig.name}`,
     description: siteConfig.description,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} 2025`,
+        alt: `${siteConfig.name}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} 2025`,
+    title: `${siteConfig.name}`,
     description: siteConfig.description,
     images: ["/twitter-image"],
   },
@@ -67,7 +67,7 @@ export const layoutMetaData: Metadata = {
 export const layoutJsonLd = {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: `${siteConfig.name} 2025`,
+  name: `${siteConfig.name}`,
   description: siteConfig.description,
   startDate: siteConfig.event.startDate,
   endDate: siteConfig.event.endDate,
