@@ -129,22 +129,6 @@ export default async function ContactPage() {
 
                   <div>
                     <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium text-primary mb-2"
-                    >
-                      Ämne
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      className="w-full px-4 py-3 border border-primary/20 rounded focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
-                      placeholder="Ämne för ditt meddelande"
-                    />
-                  </div>
-
-                  <div>
-                    <label
                       htmlFor="message"
                       className="block text-sm font-medium text-primary mb-2"
                     >
