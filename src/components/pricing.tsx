@@ -20,13 +20,14 @@ interface PricingProps {
 
 export function Pricing({ ticketsData }: PricingProps) {
   const text = useText();
+
   if (!ticketsData?.fields.tickets) {
     return (
       <section className="bg-secondary">
         <div className="max-w-5xl mx-auto px-4 pt-16 pb-16">
           <div className="text-center">
             <p className="text-primary text-lg">
-              No tickets available at the moment.
+              Inga biljetter tillgängliga just nu.
             </p>
           </div>
         </div>
@@ -37,7 +38,7 @@ export function Pricing({ ticketsData }: PricingProps) {
   const sortedTickets = sortTicketsByOrder(ticketsData.fields.tickets);
 
   return (
-    <section className="bg-secondary">
+    <section className="bg-secondary" id="biljetter">
       <div className="max-w-5xl mx-auto px-4 pt-16">
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
           <p className="flex flex-col text-primary text-lg text-balance sm:text-2xl sm:leading-6">

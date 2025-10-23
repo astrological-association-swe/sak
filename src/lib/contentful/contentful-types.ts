@@ -55,6 +55,13 @@ export enum TextKey {
   UNDER_CONSTRUCTION = "UNDER_CONSTRUCTION",
 }
 
+export enum CardId {
+  VISION = "Vision",
+  MISSION = "Mission",
+  WHY_PARTICIPATE = "Why Participate",
+  INTERESTED_IN_PARTICIPATING = "Interested In Participating",
+}
+
 export interface Page {
   sys: {
     id: string;
@@ -158,6 +165,7 @@ export interface Lecturer {
     shortDescription?: string;
     longDescription?: string;
     image?: ContentfulAsset;
+    order?: number;
   };
 }
 
@@ -200,5 +208,25 @@ export interface ContactDetails {
     email?: string;
     phone?: string;
     address?: string;
+  };
+}
+
+export interface ContentCard {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    contentType: {
+      sys: {
+        id: string;
+        type: string;
+      };
+    };
+  };
+  fields: {
+    cardId: CardId;
+    heading?: string;
+    subHeading?: string;
   };
 }

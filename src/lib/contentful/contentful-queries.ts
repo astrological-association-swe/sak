@@ -7,8 +7,9 @@ import type {
   Lecturer,
   Hero,
   ContactDetails,
+  ContentCard,
 } from "./contentful-types";
-import { PageId, TextKey } from "./contentful-types";
+import { PageId, TextKey, CardId } from "./contentful-types";
 import { unstable_cache } from "next/cache";
 
 // Page queries with cache tags
@@ -125,10 +126,18 @@ export function sortTicketsByOrder(tickets: Ticket[]): Ticket[] {
   );
 }
 
+// Utility functions for lecturers
+export function sortLecturersByOrder(lecturers: Lecturer[]): Lecturer[] {
+  return [...lecturers].sort(
+    (a, b) => (a.fields.order || 0) - (b.fields.order || 0)
+  );
+}
+
 export function formatTicketPrice(price: number): string {
   return new Intl.NumberFormat("sv-SE", {
     style: "currency",
     currency: "SEK",
+    maximumFractionDigits: 0,
   }).format(price);
 }
 
@@ -168,7 +177,7 @@ export function getTicketUrl(
 export const getAllLecturers = unstable_cache(
   async (): Promise<Lecturer[]> => {
     const response = await getEntries<Lecturer>("lecturer");
-    return response.items;
+    return sortLecturersByOrder(response.items);
   },
   ["all-lecturers"],
   {
@@ -220,6 +229,34 @@ export const getContactDetails = unstable_cache(
   ["contact-details"],
   {
     tags: ["contact-details"],
+    revalidate: 604800, // 1 week
+  }
+);
+
+// Content Card queries with cache tags
+export const getAllContentCards = unstable_cache(
+  async (): Promise<ContentCard[]> => {
+    const response = await getEntries<ContentCard>("contentCard");
+    return response.items;
+  },
+  ["all-content-cards"],
+  {
+    tags: ["content-cards"],
+    revalidate: 604800, // 1 week
+  }
+);
+
+export const getContentCardById = unstable_cache(
+  async (cardId: CardId): Promise<ContentCard | null> => {
+    const response = await getEntries<ContentCard>("contentCard", {
+      "fields.cardId": cardId,
+      limit: 1,
+    });
+    return response.items[0] || null;
+  },
+  ["content-card-by-id"],
+  {
+    tags: ["content-cards"],
     revalidate: 604800, // 1 week
   }
 );

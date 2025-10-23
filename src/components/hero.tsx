@@ -40,7 +40,7 @@ export function Hero({ heroData, ticketsData }: HeroProps) {
         priority
         fill
         quality={50}
-        className="absolute object-cover inset-0 size-full object-[center_80%]"
+        className="absolute object-cover inset-0 size-full object-[center_75%]"
       />
       <div className="w-full px-4 sm:px-8 flex flex-col gap-5 items-center justify-between text-center relative">
         {/* <Image

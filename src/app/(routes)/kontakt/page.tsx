@@ -3,9 +3,10 @@ import {
   getPageByPageId,
   getTicketsByName,
   getContactDetails,
+  getAllContentCards,
 } from "@/lib/contentful/contentful-queries";
 import { PageTextProvider } from "@/lib/contentful/page-text-provider";
-import { PageId } from "@/lib/contentful/contentful-types";
+import { PageId, CardId } from "@/lib/contentful/contentful-types";
 import { TrackingButton } from "@/components/tracking-button";
 import { Button } from "@/components/button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
@@ -15,12 +16,19 @@ export const generateMetadata = generateContactMetadata;
 
 export default async function ContactPage() {
   // Fetch both text content and page-specific content
-  const [texts, ticketsData, contactDetails, pageData] = await Promise.all([
-    getAllTexts(),
-    getTicketsByName("Tickets"),
-    getContactDetails(),
-    getPageByPageId(PageId.CONTACT),
-  ]);
+  const [texts, ticketsData, contactDetails, pageData, contentCards] =
+    await Promise.all([
+      getAllTexts(),
+      getTicketsByName("Tickets"),
+      getContactDetails(),
+      getPageByPageId(PageId.CONTACT),
+      getAllContentCards(),
+    ]);
+
+  // Find the interested in participating card
+  const interestedCard = contentCards.find(
+    (card) => card.fields.cardId === CardId.INTERESTED_IN_PARTICIPATING
+  );
 
   return (
     <PageTextProvider texts={texts}>
@@ -167,28 +175,30 @@ export default async function ContactPage() {
             </div>
 
             {/* Call to Action */}
-            <div className="bg-primary-dark rounded-sm p-6 sm:p-8 text-center">
-              <h2 className="text-2xl sm:text-3xl font-heading text-white mb-4">
-                Intresserad av att delta?
-              </h2>
-              <p className="text-white/90 text-lg leading-relaxed mb-6">
-                Boka din plats redan idag och var med på årets mest spännande
-                astrologiska konferens i Stockholm.
-              </p>
+            {interestedCard && (
+              <div className="bg-primary-dark rounded-sm p-6 sm:p-8 text-center">
+                <h2 className="text-2xl sm:text-3xl font-heading text-white mb-4">
+                  {interestedCard.fields.heading || "Intresserad av att delta?"}
+                </h2>
+                <p className="text-white/90 text-lg leading-relaxed mb-6">
+                  {interestedCard.fields.subHeading ||
+                    "Boka din plats redan idag och var med på årets mest spännande astrologiska konferens i Stockholm."}
+                </p>
 
-              {ticketsData?.fields.baseTicketUrl && (
-                <TrackingButton
-                  href={ticketsData.fields.baseTicketUrl}
-                  variant="primary"
-                  size="lg"
-                  trackingName="ticket_purchase"
-                  trackingLocation="contact"
-                  showIcon={true}
-                >
-                  Köp biljett nu
-                </TrackingButton>
-              )}
-            </div>
+                {ticketsData?.fields.baseTicketUrl && (
+                  <TrackingButton
+                    href={ticketsData.fields.baseTicketUrl}
+                    variant="primary"
+                    size="lg"
+                    trackingName="ticket_purchase"
+                    trackingLocation="contact"
+                    showIcon={true}
+                  >
+                    Köp biljett nu
+                  </TrackingButton>
+                )}
+              </div>
+            )}
           </div>
         </section>
       </main>
